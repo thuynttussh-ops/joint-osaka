@@ -3,13 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JOINT OSAKA</title>
+
+<title>JOINT OSAKA | Hỗ trợ người Việt tìm nhà tại Osaka</title>
 
 <style>
-body{
+
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
 font-family:Arial,sans-serif;
 background:#f5f5f5;
+line-height:1.6;
 }
 
 .header{
@@ -17,89 +25,232 @@ background:#d6001c;
 color:white;
 padding:20px;
 text-align:center;
+position:sticky;
+top:0;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
 }
 
 .hero{
-padding:60px 20px;
+background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
+url('https://images.unsplash.com/photo-1542051841857-5f90071e7989');
+background-size:cover;
+background-position:center;
+color:white;
 text-align:center;
-background:white;
+padding:120px 20px;
 }
 
 .hero h1{
-font-size:48px;
-color:#d6001c;
+font-size:50px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:22px;
+margin-bottom:30px;
 }
 
 .button{
 display:inline-block;
 background:#d6001c;
 color:white;
-padding:12px 24px;
-text-decoration:none;
+padding:15px 30px;
 border-radius:8px;
-margin-top:20px;
+text-decoration:none;
+font-weight:bold;
 }
 
 .section{
-max-width:1000px;
+max-width:1200px;
 margin:auto;
-padding:40px 20px;
+padding:60px 20px;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:40px;
+color:#d6001c;
+font-size:32px;
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 }
 
 .card{
 background:white;
-padding:20px;
-margin:10px 0;
-border-radius:10px;
-box-shadow:0 2px 8px rgba(0,0,0,.1);
+padding:25px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 
-.footer{
+.card h3{
+margin-bottom:10px;
+color:#d6001c;
+}
+
+.property{
+background:white;
+padding:20px;
+margin-bottom:15px;
+border-radius:10px;
+}
+
+.property h3{
+color:#d6001c;
+}
+
+.step{
+background:white;
+padding:15px;
+margin-bottom:10px;
+border-left:5px solid #d6001c;
+}
+
+.contact{
 background:#d6001c;
 color:white;
 text-align:center;
-padding:30px;
+padding:60px 20px;
 }
+
+.contact h2{
+margin-bottom:20px;
+}
+
+.footer{
+background:#111;
+color:white;
+text-align:center;
+padding:20px;
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="header">
-<h2>株式会社ジョイント</h2>
-<p>REAL ESTATE / CONSTRUCTION</p>
+<div class="logo">株式会社 JOINT</div>
+<p>REAL ESTATE SUPPORT FOR VIETNAMESE IN JAPAN</p>
 </div>
 
 <div class="hero">
 <h1>TÌM NHÀ TẠI OSAKA</h1>
-<p>Hỗ trợ người Việt tìm nhà tại Nhật Bản</p>
+<p>Hỗ trợ người Việt tìm nhà, giải thích hợp đồng và hỗ trợ thủ tục bằng tiếng Việt</p>
 
 <a href="#" class="button">
-Liên hệ ngay
+Liên hệ tư vấn miễn phí
 </a>
 </div>
 
 <div class="section">
 
+<h2 class="section-title">
+Vì sao chọn JOINT?
+</h2>
+
+<div class="features">
+
 <div class="card">
-<h3>Người nước ngoài OK</h3>
-<p>Giới thiệu nhà có thể thuê cho người nước ngoài.</p>
+<h3>🏠 Người nước ngoài OK</h3>
+<p>Giới thiệu các căn hộ có thể thuê cho người nước ngoài.</p>
 </div>
 
 <div class="card">
-<h3>Hỗ trợ tiếng Việt</h3>
-<p>Tư vấn và giải thích hợp đồng bằng tiếng Việt.</p>
+<h3>🇻🇳 Hỗ trợ tiếng Việt</h3>
+<p>Giải thích hợp đồng và hỗ trợ bằng tiếng Việt.</p>
 </div>
 
 <div class="card">
-<h3>Khu vực hỗ trợ</h3>
-<p>Osaka, Sakai, Yao, Higashi Osaka...</p>
+<h3>📍 Osaka & Kansai</h3>
+<p>Hỗ trợ Osaka, Sakai, Yao, Higashi Osaka và khu vực lân cận.</p>
 </div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2 class="section-title">
+Nhà đang giới thiệu
+</h2>
+
+<div class="property">
+<h3>ABCマンション</h3>
+<p>堺市 | 52,000円 | Người nước ngoài OK</p>
+</div>
+
+<div class="property">
+<h3>DEFハイツ</h3>
+<p>東大阪市 | 48,000円 | Người nước ngoài OK</p>
+</div>
+
+<div class="property">
+<h3>GHIレジデンス</h3>
+<p>大阪市 | 58,000円 | Người nước ngoài OK</p>
+</div>
+
+</div>
+
+<div class="section">
+
+<h2 class="section-title">
+Quy trình thuê nhà
+</h2>
+
+<div class="step">1️⃣ Liên hệ tư vấn</div>
+<div class="step">2️⃣ Chọn căn hộ phù hợp</div>
+<div class="step">3️⃣ Xem nhà</div>
+<div class="step">4️⃣ Nộp hồ sơ</div>
+<div class="step">5️⃣ Ký hợp đồng</div>
+<div class="step">6️⃣ Nhận chìa khóa</div>
+
+</div>
+
+<div class="section">
+
+<h2 class="section-title">
+Người hỗ trợ
+</h2>
+
+<div class="card">
+<h3>Thu Thủy</h3>
+
+<p>
+Hỗ trợ khách hàng Việt Nam tìm nhà tại Osaka.
+Giải thích hợp đồng, hỗ trợ trao đổi với công ty quản lý và hỗ trợ trong quá trình thuê nhà.
+</p>
+
+</div>
+
+</div>
+
+<div class="contact">
+
+<h2>Liên hệ với JOINT</h2>
+
+<p>LINE</p>
+<p>Facebook</p>
+<p>Instagram</p>
+
+<br>
+
+<a href="#" class="button">
+Nhắn tin ngay
+</a>
 
 </div>
 
 <div class="footer">
-© 株式会社Joint
+© 2026 株式会社JOINT
 </div>
 
 </body>
