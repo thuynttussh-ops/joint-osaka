@@ -259,21 +259,31 @@ Tìm kiếm căn hộ
 
 <select id="cityFilter">
 
-<option value="">Tất cả</option>
+<p><strong>🏙 Thành phố</strong></p>
 
-<option>浪速区</option>
+<select id="cityFilter">
 
-<option>東淀川区</option>
+<option value="">Chọn thành phố</option>
 
-<option>生野区</option>
+<option value="osaka">大阪市</option>
 
-<option>西成区</option>
+<option value="sakai">堺市</option>
 
-<option>淀川区</option>
+<option value="yao">豊中市</option>
 
-<option>此花区</option>
+<option value="settsu">摂津市</option>
 
-<option>北区</option>
+<option value="higashi">東大阪市</option>
+
+</select>
+
+<br><br>
+
+<p><strong>🏘 Quận</strong></p>
+
+<select id="wardFilter">
+
+<option value="">Chọn quận</option>
 
 </select>
 
@@ -302,6 +312,9 @@ Tìm kiếm căn hộ
 <option value="60000">60,000円</option>
 
 <option value="70000">70,000円</option>
+
+<option value="80000">80,000円</option>
+
 
 
 </select>
@@ -429,6 +442,67 @@ Established in October 1988
 </p>
 
 </div>
+<script>
 
+const wards = {
+
+osaka:[
+"北区",
+"中央区",
+"浪速区",
+"西成区",
+"淀川区",
+"東淀川区",
+"生野区",
+"此花区"
+],
+
+sakai:[
+"堺区",
+"北区",
+"中区",
+"西区",
+"東区",
+"南区",
+"美原区"
+],
+
+yao:[
+"八尾市"
+],
+
+higashi:[
+"東大阪市"
+]
+
+};
+
+const citySelect=document.getElementById("cityFilter");
+
+const wardSelect=document.getElementById("wardFilter");
+
+citySelect.addEventListener("change",function(){
+
+const city=this.value;
+
+wardSelect.innerHTML="<option value=''>Chọn quận</option>";
+
+if(!city) return;
+
+wards[city].forEach(function(ward){
+
+const option=document.createElement("option");
+
+option.text=ward;
+
+option.value=ward;
+
+wardSelect.appendChild(option);
+
+});
+
+});
+
+</script>
 </body>
 </html>
