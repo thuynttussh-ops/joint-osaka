@@ -249,37 +249,42 @@ Vì sao chọn JOINT?
 
 <div class="section">
 
+<div class="section">
+
 <h2 class="section-title">
-Tìm kiếm căn hộ
+🔍 TÌM KIẾM CĂN HỘ
 </h2>
 
-<div class="card">
+<p style="text-align:center;color:#666;margin-bottom:35px;">
+Chọn điều kiện để tìm căn hộ phù hợp.
+</p>
 
-<p><strong>Khu vực</strong></p>
+<div class="card" style="max-width:650px;margin:auto;">
+
+<!-- Thành phố -->
+
+<label><strong>🏙 Thành phố</strong></label>
 
 <select id="cityFilter">
-
-<p><strong>🏙 Thành phố</strong></p>
-
-<select id="cityFilter">
-
 <option value="">Chọn thành phố</option>
 
 <option value="osaka">大阪市</option>
 
 <option value="sakai">堺市</option>
 
-<option value="yao">豊中市</option>
-
-<option value="settsu">摂津市</option>
-
 <option value="higashi">東大阪市</option>
+
+<option value="yao">八尾市</option>
+
+<option value="suita">吹田市</option>
+
+<option value="toyonaka">豊中市</option>
 
 </select>
 
-<br><br>
+<!-- Quận -->
 
-<p><strong>🏘 Quận</strong></p>
+<label><strong>🏘 Quận</strong></label>
 
 <select id="wardFilter">
 
@@ -287,45 +292,108 @@ Tìm kiếm căn hộ
 
 </select>
 
-<br><br>
+<!-- Ga -->
 
-<p><strong>Ga gần nhất</strong></p>
+<label><strong>🚉 Ga gần nhất</strong></label>
 
-<select id="stationFilter">
+<select>
 
-<option value="">Tất cả</option>
+<option>Không giới hạn</option>
 
-</select>
+<option>大阪駅</option>
 
-<br><br>
+<option>梅田駅</option>
 
-<p><strong>Giá thuê tối đa</strong></p>
+<option>難波駅</option>
 
-<select id="priceFilter">
+<option>天王寺駅</option>
 
-<option value="">Không giới hạn</option>
-
-<option value="40000">40,000円</option>
-
-<option value="50000">50,000円</option>
-
-<option value="60000">60,000円</option>
-
-<option value="70000">70,000円</option>
-
-<option value="80000">80,000円</option>
-
-
+<option>京橋駅</option>
 
 </select>
 
-<br><br>
+<!-- Khoảng cách -->
 
-<button class="button" onclick="searchProperty()">
+<label><strong>🚶 Khoảng cách đến ga</strong></label>
 
-🔍 Tìm kiếm
+<select>
+
+<option>Không giới hạn</option>
+
+<option>徒歩5分以内</option>
+
+<option>徒歩10分以内</option>
+
+<option>徒歩15分以内</option>
+
+</select>
+
+<!-- Giá -->
+
+<label><strong>💴 Giá thuê tối đa</strong></label>
+
+<select>
+
+<option>Không giới hạn</option>
+
+<option>40,000円</option>
+
+<option>50,000円</option>
+
+<option>60,000円</option>
+
+<option>70,000円</option>
+
+<option>80,000円</option>
+
+</select>
+
+<!-- Diện tích -->
+
+<label><strong>📐 Diện tích tối thiểu</strong></label>
+
+<select>
+
+<option>Không giới hạn</option>
+
+<option>20㎡以上</option>
+
+<option>25㎡以上</option>
+
+<option>30㎡以上</option>
+
+<option>40㎡以上</option>
+
+</select>
+
+<div style="text-align:center;margin-top:30px;">
+
+<button class="button">
+
+🔍 TÌM KIẾM
 
 </button>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card" style="max-width:900px;margin:auto;">
+
+<h3 style="color:#d6001c;">
+🏠 Kết quả tìm kiếm
+</h3>
+
+<p style="margin-top:15px;">
+
+Hiện tại website đang trong giai đoạn phát triển.
+
+Sau khi kết nối Google Sheets, danh sách căn hộ sẽ tự động hiển thị tại đây.
+
+</p>
+
 
 </div>
 
@@ -442,18 +510,20 @@ Established in October 1988
 </p>
 
 </div>
+
 <script>
 
-const wards = {
+const wards={
 
 osaka:[
 "北区",
 "中央区",
 "浪速区",
-"西成区",
+"西区",
 "淀川区",
 "東淀川区",
 "生野区",
+"西成区",
 "此花区"
 ],
 
@@ -467,42 +537,49 @@ sakai:[
 "美原区"
 ],
 
+higashi:[
+"東大阪市"
+],
+
 yao:[
 "八尾市"
 ],
 
-higashi:[
-"東大阪市"
+suita:[
+"吹田市"
+],
+
+toyonaka:[
+"豊中市"
 ]
 
 };
 
-const citySelect=document.getElementById("cityFilter");
+const city=document.getElementById("cityFilter");
 
-const wardSelect=document.getElementById("wardFilter");
+const ward=document.getElementById("wardFilter");
 
-citySelect.addEventListener("change",function(){
+city.addEventListener("change",function(){
 
-const city=this.value;
+ward.innerHTML="<option>Chọn quận</option>";
 
-wardSelect.innerHTML="<option value=''>Chọn quận</option>";
+if(this.value==="") return;
 
-if(!city) return;
+wards[this.value].forEach(function(item){
 
-wards[city].forEach(function(ward){
+let option=document.createElement("option");
 
-const option=document.createElement("option");
+option.text=item;
 
-option.text=ward;
+option.value=item;
 
-option.value=ward;
-
-wardSelect.appendChild(option);
+ward.appendChild(option);
 
 });
 
 });
 
 </script>
+
 </body>
 </html>
