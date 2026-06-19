@@ -9,36 +9,6 @@ let allProperties = [];
 const sheetURL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSv3GJHvqIiznp0DKYlJBvvEeWnZDbsmkHIAZWVrYuwVc_bBq9TLZyLCvtRuE4TylHm-teSIjG4nDvC/pub?gid=0&single=true&output=csv";
 
-.property-list {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 15px;
-}
-
-.property {
-background: white;
-border-radius: 12px;
-padding: 15px;
-box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-transition: 0.2s;
-}
-
-.property:hover {
-transform: translateY(-3px);
-box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-}
-
-.property h3 {
-color: #d6001c;
-font-size: 18px;
-margin-bottom: 8px;
-}
-
-.property p {
-font-size: 14px;
-color: #333;
-line-height: 1.5;
-}
 
 Papa.parse(sheetURL,{
 
