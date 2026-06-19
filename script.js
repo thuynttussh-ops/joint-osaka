@@ -9,7 +9,7 @@ Papa.parse(sheetURL, {
 
         const data = results.data;
 
-        console.log(data);
+        console.log(data[0]);
 
         displayProperties(data);
 
