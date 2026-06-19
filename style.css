@@ -155,3 +155,27 @@ color:white;
 text-align:center;
 padding:20px;
 }
+.property-list {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 15px;
+}
+
+.property {
+background: white;
+border-radius: 12px;
+padding: 15px;
+box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+transition: 0.2s;
+}
+
+.property:hover {
+transform: translateY(-3px);
+box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.property h3 {
+color: #d6001c;
+font-size: 18px;
+margin-bottom: 8px;
+}
