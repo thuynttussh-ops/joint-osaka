@@ -1,3 +1,4 @@
+console.log("script.js đã chạy");
 let allProperties = [];
 const sheetURL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSv3GJHvqIiznp0DKYlJBvvEeWnZDbsmkHIAZWVrYuwVc_bBq9TLZyLCvtRuE4TylHm-teSIjG4nDvC/pub?gid=0&single=true&output=csv";
