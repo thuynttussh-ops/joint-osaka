@@ -90,10 +90,10 @@ border-radius:12px;
 box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 
-/* ===== PROPERTY LIST (QUAN TRỌNG) ===== */
+/* ===== PROPERTY GRID (QUAN TRỌNG NHẤT) ===== */
 #property-list{
-display:grid !important;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+display:grid;
+grid-template-columns:repeat(2, 1fr);
 gap:15px;
 }
 
@@ -104,7 +104,7 @@ padding:15px;
 border-radius:12px;
 box-shadow:0 2px 10px rgba(0,0,0,0.08);
 transition:0.2s;
-margin-bottom:0 !important;
+margin:0;
 }
 
 .property:hover{
@@ -161,4 +161,11 @@ background:#111;
 color:white;
 text-align:center;
 padding:20px;
+}
+
+/* ===== RESPONSIVE (điện thoại) ===== */
+@media (max-width: 768px){
+#property-list{
+grid-template-columns:1fr;
+}
 }
