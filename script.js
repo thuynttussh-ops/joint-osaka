@@ -1,66 +1,16 @@
+const sheetURL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSv3GJHvqIiznp0DKYlJBvvEeWnZDbsmkHIAZWVrYuwVc_bBq9TLZyLCvtRuE4TylHm-teSIjG4nDvC/pub?gid=0&single=true&output=csv";
 
-const wards={
+Papa.parse(sheetURL, {
 
-osaka:[
-"北区",
-"中央区",
-"浪速区",
-"西区",
-"淀川区",
-"東淀川区",
-"生野区",
-"西成区",
-"此花区"
-],
+    download: true,
 
-sakai:[
-"堺区",
-"北区",
-"中区",
-"西区",
-"東区",
-"南区",
-"美原区"
-],
+    header: true,
 
-higashi:[
-"東大阪市"
-],
+    complete: function(results){
 
-yao:[
-"八尾市"
-],
+        console.log(results.data);
 
-suita:[
-"吹田市"
-],
-
-toyonaka:[
-"豊中市"
-]
-
-};
-
-const city=document.getElementById("cityFilter");
-
-const ward=document.getElementById("wardFilter");
-
-city.addEventListener("change",function(){
-
-ward.innerHTML="<option>Chọn quận</option>";
-
-if(this.value==="") return;
-
-wards[this.value].forEach(function(item){
-
-let option=document.createElement("option");
-
-option.text=item;
-
-option.value=item;
-
-ward.appendChild(option);
-
-});
+    }
 
 });
