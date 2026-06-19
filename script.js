@@ -32,6 +32,8 @@ function displayProperties(properties){
 
             <p><strong>📍 Địa điểm:</strong> ${item.City} ${item.Ward}</p>
 
+            <p><strong>🏠 Địa chỉ:</strong> ${item.Address}</p>
+
             <p><strong>🚉 Ga:</strong> ${item.Station}（徒歩${item.WalkMinutes}分）</p>
 
             <p><strong>💴 Giá thuê:</strong> ${item.Rent} 円</p>
