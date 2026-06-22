@@ -236,6 +236,15 @@ document
     const station =
         document.getElementById("stationFilter").value;
 
+    const maxRent =
+document.getElementById("priceFilter").value;
+
+const minArea =
+document.getElementById("sizeFilter").value;
+
+const maxWalk =
+document.getElementById("distanceFilter").value;
+
     let filtered = allProperties;
 
    // Lọc theo thành phố
@@ -256,3 +265,42 @@ if (station !== "") {
     displayProperties(filtered);
 
 });
+
+// Lọc theo giá
+if (maxRent !== "") {
+
+    filtered = filtered.filter(item => {
+
+        const rent = Number(
+            item.Rent
+                .replace("¥","")
+                .replace(/,/g,"")
+        );
+
+        return rent <= Number(maxRent);
+
+    });
+
+}
+
+// Lọc theo diện tích
+if (minArea !== "") {
+
+    filtered = filtered.filter(item =>
+
+        parseFloat(item.Area) >= Number(minArea)
+
+    );
+
+}
+
+// Lọc theo khoảng cách
+if (maxWalk !== "") {
+
+    filtered = filtered.filter(item =>
+
+        Number(item.WalkMinutes) <= Number(maxWalk)
+
+    );
+
+}
