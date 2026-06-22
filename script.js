@@ -150,11 +150,30 @@ function displayProperties(properties){
 
     container.innerHTML="";
 
+    if(properties.length===0){
+
+        container.innerHTML=`
+
+        <div class="property">
+
+            <h3>Không tìm thấy căn hộ phù hợp.</h3>
+
+            <p>Vui lòng thử thay đổi điều kiện tìm kiếm.</p>
+
+        </div>
+
+        `;
+
+        return;
+    }
+
     properties.forEach(item=>{
 
         container.innerHTML += `
 
 <div class="property">
+
+${item.Image ? `<img src="${item.Image}" alt="${item.PropertyName}">` : ""}
 
 <h3>${item.PropertyName}</h3>
 
@@ -179,12 +198,9 @@ function displayProperties(properties){
     });
 
 }
-
-
 // ==========================
 // Event
 // ==========================
-
 document
 .getElementById("cityFilter")
 .addEventListener("change",function(){
@@ -201,5 +217,42 @@ document
     document.getElementById("cityFilter").value;
 
     createStationDropdown(city,this.value);
+
+});
+// ==========================
+// Nút tìm kiếm
+// ==========================
+
+document
+.getElementById("searchBtn")
+.addEventListener("click", function () {
+
+    const city =
+        document.getElementById("cityFilter").value;
+
+    const ward =
+        document.getElementById("wardFilter").value;
+
+    const station =
+        document.getElementById("stationFilter").value;
+
+    let filtered = allProperties;
+
+   // Lọc theo thành phố
+if (city !== "") {
+    filtered = filtered.filter(item => item.City.trim() === city.trim());
+}
+
+// Lọc theo quận
+if (ward !== "") {
+    filtered = filtered.filter(item => item.Ward.trim() === ward.trim());
+}
+
+// Lọc theo ga
+if (station !== "") {
+    filtered = filtered.filter(item => item.Station.trim() === station.trim());
+}
+
+    displayProperties(filtered);
 
 });
