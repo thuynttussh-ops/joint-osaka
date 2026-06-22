@@ -286,11 +286,13 @@ if (maxRent !== "") {
 // Lọc theo diện tích
 if (minArea !== "") {
 
-    filtered = filtered.filter(item =>
+    filtered = filtered.filter(item => {
 
-        parseFloat(item.Area) >= Number(minArea)
+        console.log(item.PropertyName, item.Area);
 
-    );
+        return parseFloat(item.Area) >= parseFloat(minArea);
+
+    });
 
 }
 
