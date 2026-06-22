@@ -1,29 +1,70 @@
-console.log("script.js đã chạy");
+console.log("===== JOINT OSAKA Website =====");
+console.log("script.js loaded");
 
-// ==========================
-// Google Sheets
-// ==========================
+// ===============================
+// GLOBAL VARIABLES
+// ===============================
 
 let allProperties = [];
 
+// Google Sheets CSV
 const sheetURL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSv3GJHvqIiznp0DKYlJBvvEeWnZDbsmkHIAZWVrYuwVc_bBq9TLZyLCvtRuE4TylHm-teSIjG4nDvC/pub?gid=0&single=true&output=csv";
 
+// ===============================
+// LOAD GOOGLE SHEETS
+// ===============================
 
-Papa.parse(sheetURL,{
+// ===============================
+// Utility: Tạo danh sách option cho dropdown
+// ===============================
 
-    download:true,
-    header:true,
+function populateSelect(selectId, defaultText, values) {
 
-    complete:function(results){
+    const select = document.getElementById(selectId);
 
-        allProperties = results.data.filter(item=>item.PropertyName);
+    select.innerHTML = `<option value="">${defaultText}</option>`;
 
-        console.log(allProperties);
+    values
+        .filter(value => value && value.trim() !== "")
+        .sort()
+        .forEach(value => {
+
+            select.innerHTML += `
+                <option value="${value}">
+                    ${value}
+                </option>
+            `;
+
+        });
+
+}
+
+Papa.parse(sheetURL, {
+
+    download: true,
+
+    header: true,
+
+    complete: function (results) {
+
+        allProperties = results.data.filter(item => item.PropertyName);
+
+        console.log("Loaded:", allProperties.length, "properties");
 
         createCityDropdown();
 
         displayProperties(allProperties);
+
+    },
+
+    error: function (err) {
+
+        console.error(err);
+
+    }
+
+});
 
     }
 
@@ -34,66 +75,67 @@ Papa.parse(sheetURL,{
 // Thành phố
 // ==========================
 
-function createCityDropdown(){
+function createCityDropdown() {
 
-    const citySelect =
-    document.getElementById("cityFilter");
+    const cities = [
 
-    citySelect.innerHTML =
-    '<option value="">Chọn thành phố</option>';
+        ...new Set(
 
-    const cities = [...new Set(
+            allProperties.map(item => item.City)
 
-        allProperties.map(item=>item.City)
+        )
 
-    )];
+    ];
 
-    cities.sort();
-
-    cities.forEach(city=>{
-
-        citySelect.innerHTML +=
-        `<option value="${city}">${city}</option>`;
-
-    });
+    populateSelect(
+        "cityFilter",
+        "Chọn thành phố",
+        cities
+    );
 
 }
-
 
 // ==========================
 // Quận
 // ==========================
 
-function createWardDropdown(city){
+function createWardDropdown(city) {
 
-    const wardSelect =
-    document.getElementById("wardFilter");
-
-    wardSelect.innerHTML =
-    '<option value="">Chọn quận</option>';
+    // Reset Quận
+    populateSelect(
+        "wardFilter",
+        "Chọn quận",
+        []
+    );
 
     // Reset Ga
-    document.getElementById("stationFilter").innerHTML =
-    '<option value="">Chọn ga</option>';
+    populateSelect(
+        "stationFilter",
+        "Chọn ga",
+        []
+    );
 
-    if(city==="") return;
+    if (!city) return;
 
-    const wards=[...new Set(
+    const wards = [
 
-        allProperties
-        .filter(item=>item.City.trim()===city.trim())
-        .map(item=>item.Ward)
+        ...new Set(
 
-    )];
+            allProperties
 
-    wards.sort();
+                .filter(item => item.City.trim() === city.trim())
 
-    wards.forEach(ward=>{
+                .map(item => item.Ward)
 
-        wardSelect.innerHTML +=
-        `<option value="${ward}">${ward}</option>`;
+        )
 
-    });
+    ];
+
+    populateSelect(
+        "wardFilter",
+        "Chọn quận",
+        wards
+    );
 
 }
 
@@ -102,39 +144,40 @@ function createWardDropdown(city){
 // Ga
 // ==========================
 
-function createStationDropdown(city,ward){
+function createStationDropdown(city, ward) {
 
-    const stationSelect =
-    document.getElementById("stationFilter");
+    populateSelect(
+        "stationFilter",
+        "Chọn ga",
+        []
+    );
 
-    stationSelect.innerHTML =
-    '<option value="">Chọn ga</option>';
+    if (!city || !ward) return;
 
-    if(city==="" || ward==="") return;
+    const stations = [
 
-    const stations=[...new Set(
+        ...new Set(
 
-        allProperties
+            allProperties
 
-        .filter(item=>
+                .filter(item =>
 
-            item.City.trim()===city.trim() &&
-            item.Ward.trim()===ward.trim()
+                    item.City.trim() === city.trim() &&
+                    item.Ward.trim() === ward.trim()
+
+                )
+
+                .map(item => item.Station)
 
         )
 
-        .map(item=>item.Station)
+    ];
 
-    )];
-
-    stations.sort();
-
-    stations.forEach(station=>{
-
-        stationSelect.innerHTML +=
-        `<option value="${station}">${station}</option>`;
-
-    });
+    populateSelect(
+        "stationFilter",
+        "Chọn ga",
+        stations
+    );
 
 }
 
